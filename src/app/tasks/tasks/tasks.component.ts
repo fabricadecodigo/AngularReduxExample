@@ -14,25 +14,25 @@ export class TasksComponent implements OnInit {
   isLoading$: Observable<boolean>;
   error$: Observable<string>;
 
-  constructor(private store: TaskStoreService, private tasksService: TasksService) { }
+  constructor(private taskStore: TaskStoreService) { }
 
   ngOnInit() {
-    this.store.getAllAction();
-    this.tasks$ = this.store.getTasks();
-    this.isLoading$ = this.store.getIsLoading();
-    this.error$ = this.store.getError();
+    this.taskStore.getAllAction();
+    this.tasks$ = this.taskStore.getTasks();
+    this.isLoading$ = this.taskStore.getIsLoading();
+    this.error$ = this.taskStore.getError();
   }
 
   onCreateTask(title: string) {
-    this.store.createAction({ title, done: false });
+    this.taskStore.createAction({ title, done: false });
   }
 
   onRemoveTask(id: number) {
-    this.store.removeAction(id);
+    this.taskStore.removeAction(id);
   }
 
   onEditTask(task: ITask) {
-    this.store.editAction(task);
+    this.taskStore.editAction(task);
   }
 
 }
