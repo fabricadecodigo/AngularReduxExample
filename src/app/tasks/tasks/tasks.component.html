@@ -1,0 +1,10 @@
+<div class="container">
+  <div *ngIf="isLoading$ | async">
+    Aguarde...
+  </div>
+  <div class="error-msg" *ngIf="error$ | async as error">
+    <p>{{ error }}</p>
+  </div>
+  <app-task-form (createTask)="onCreateTask($event)"></app-task-form>
+  <app-task-list [tasks]="tasks$" (remove)="onRemoveTask($event)" (edit)="onEditTask($event)"></app-task-list>
+</div>

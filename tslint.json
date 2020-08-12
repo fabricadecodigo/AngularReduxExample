@@ -63,7 +63,7 @@
       "timeEnd",
       "trace"
     ],
-    "no-empty": false,
+    "no-empty": [true, "allow-empty-functions"],
     "no-inferrable-types": [
       true,
       "ignore-params"
@@ -94,10 +94,6 @@
         "named": "never"
       }
     },
-    "typedef": [
-      true,
-      "call-signature"
-    ],
     "typedef-whitespace": {
       "options": [
         {
@@ -120,7 +116,7 @@
       "options": [
         "ban-keywords",
         "check-format",
-        "allow-pascal-case"
+        "allow-leading-underscore"
       ]
     },
     "whitespace": {
@@ -144,9 +140,47 @@
     "template-banana-in-box": true,
     "template-no-negated-async": true,
     "use-lifecycle-interface": true,
-    "use-pipe-transform-interface": true
+    "use-pipe-transform-interface": true,
+    "interface-name": [true, "always-prefix"],
+    "jsdoc-format": [true, "check-multiline-start"],
+    "only-arrow-functions": true,
+    "prefer-const": true,
+
+    "callable-types": true,
+    "class-name": true,
+    "comment-format": [
+      true,
+      "check-space"
+    ],
+    "forin": true,
+    "interface-over-type-literal": true,
+    "label-position": true,
+    "no-arg": true,
+    "no-bitwise": false,
+    "no-construct": true,
+    "no-debugger": true,
+    "no-duplicate-super": true,
+    "no-empty-interface": true,
+    "no-eval": true,
+    "no-misused-new": true,
+    "no-shadowed-variable": true,
+    "no-string-throw": true,
+    "no-trailing-whitespace": true,
+    "no-unnecessary-initializer": true,
+    "no-var-keyword": true,
+    "one-line": [
+      true,
+      "check-open-brace",
+      "check-catch",
+      "check-else",
+      "check-whitespace"
+    ],
+    "radix": true,
+    "unified-signatures": true,
+    "no-any": true,
+    "disable-next-line": "no-input-rename"
   },
   "rulesDirectory": [
-    "codelyzer"
+    "node_modules/codelyzer"
   ]
 }

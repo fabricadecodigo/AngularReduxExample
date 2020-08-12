@@ -1,0 +1,10 @@
+<form (ngSubmit)="onSubmit()">
+  <div class="form-item">
+    <label for="title">O que você precisa fazer?</label>
+    <input type="text" [(ngModel)]="title" name="title" id="title" autocomplete="off" />
+  </div>
+
+  <div class="form-button">
+    <button type="submit">Salvar</button>
+  </div>
+</form>

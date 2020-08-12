@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="item-checkbox">
+    <input type="checkbox" name="done" id="done" [(ngModel)]="model.done" (ngModelChange)="onEdit()" />
+  </div>
+  <div class="item-title">
+    <p>{{task.id}} - {{ task.title }}</p>
+  </div>
+  <button (click)="onRemove()" class="item-button">Remover</button>
+</div>

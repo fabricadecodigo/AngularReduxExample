@@ -1,0 +1,10 @@
+.container {
+  margin-top: 2rem;
+}
+
+.error-msg {
+  margin-bottom: 2rem;
+  background: var(--color-red);
+  padding: 1rem 2rem;
+  color: var(--color-white);
+}

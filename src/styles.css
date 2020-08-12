@@ -1,1 +1,65 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  font-size: 60%;
+  --color-black: #000000;
+  --color-gray: #e5e5e5;
+  --color-blue: #14213d;
+  --color-orange: #fca311;
+  --color-white: #ffffff;
+  --color-red: #e63946;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+app-root {
+  height: 100vh;
+  font-family: sans-serif;
+}
+
+app-root {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+body,
+input,
+button,
+textarea {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
+
+.container {
+  width: 90vw;
+  max-width: 700px;
+}
+
+button {
+  background: var(--color-blue);
+  color: var(--color-white);
+  border: none;
+  padding: 0.5rem 0.75rem;
+  transition: 0.2s;
+  cursor: pointer;
+  border-radius: 0.25rem;
+}
+
+input[type="checkbox"] {
+  transform: scale(1.3);
+}
+
+button:hover {
+  background: var(--color-orange);
+}
+
+@media (min-width: 700px) {
+  :root {
+    font-size: 62.5%;
+  }
+}
