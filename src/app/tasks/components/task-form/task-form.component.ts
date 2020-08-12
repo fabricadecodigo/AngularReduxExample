@@ -6,7 +6,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
   templateUrl: './task-form.component.html',
   styleUrls: ['./task-form.component.css']
 })
-export class TaskFormComponent implements OnInit {
+export class TaskFormComponent {
   title: string;
 
   @Input()
@@ -14,12 +14,6 @@ export class TaskFormComponent implements OnInit {
 
   @Output()
   createTask: EventEmitter<string> = new EventEmitter();
-
-  ngOnInit() {
-    if (this.task) {
-      this.title = this.task.title;
-    }
-  }
 
   onSubmit() {
     this.title = this.title.trim();
