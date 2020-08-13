@@ -1,12 +1,11 @@
-import { TaskActionsTypes, error, remove } from './task.actions';
-import { ITask } from './../model/itask';
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { Action } from '@ngrx/store';
-import { Observable, of, ReplaySubject, never, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
+import { ITask } from './../model/itask';
 import { TasksService } from './../services/tasks.service';
+import { TaskActionsTypes } from './task.actions';
 import { TaskEffects } from './task.effects';
-import * as TaskActions from './task.actions';
 
 describe('TaskEffects', () => {
 
@@ -32,7 +31,7 @@ describe('TaskEffects', () => {
   });
 
   it('Given_IWantToGetAllTasks_WhenCallLoadTasksEffect_Then_ReturnsTheTasks', () => {
-    actions$ = of(TaskActions.getAll);
+    actions$ = of({ type: TaskActionsTypes.getAll });
     const tasks: ITask[] = [
       { id: 1, title: 'Test 1', done: false },
       { id: 2, title: 'Test 2', done: true }
@@ -47,7 +46,7 @@ describe('TaskEffects', () => {
   it('Given_IWantToCreateATask_WhenCallCreateEffect_Then_ReturnsTheCreatedTask', () => {
     const task: ITask = { title: 'Test 1', done: false };
     tasksServiceSpy.create.and.returnValue(of({ ...task, id: 1 }));
-    actions$ = of(TaskActions.create({ payload: { task } }));
+    actions$ = of({ type: TaskActionsTypes.create, payload: { task } });
 
     service.createEffect$.subscribe((result: { payload: { task?: ITask, error?: string } }) => {
       expect(result.payload.task).toEqual({ ...task, id: 1 });
@@ -57,7 +56,7 @@ describe('TaskEffects', () => {
   it('Given_IWantToCreateATask_WhenCallCreateEffectAndGetAnError_Then_ReturnsTheError', () => {
     const task: ITask = { title: 'Test 1', done: false };
     tasksServiceSpy.create.and.returnValue(throwError('Test'));
-    actions$ = of(TaskActions.create({ payload: { task } }));
+    actions$ = of({ type: TaskActionsTypes.create, payload: { task } });
 
     service.createEffect$.subscribe((result: { payload: { task?: ITask, error?: string } }) => {
       expect(result.payload.error).toBe('Ocorreu algum erro ao tentar criar uma tarefa');
@@ -67,7 +66,7 @@ describe('TaskEffects', () => {
   it('Given_IWantToUpdateATask_WhenCallUpdateEffect_Then_ReturnsTheUpdatedTask', () => {
     const task: ITask = { id: 1, title: 'Test 1', done: false };
     tasksServiceSpy.update.and.returnValue(of(task));
-    actions$ = of(TaskActions.update({ payload: { task } }));
+    actions$ = of({ type: TaskActionsTypes.update, payload: { task } });
 
     service.updateEffect$.subscribe((result: { payload: { task: ITask } }) => {
       expect(result.payload.task).toEqual(task);
@@ -78,7 +77,7 @@ describe('TaskEffects', () => {
     const taskToDeleteId = 1;
 
     tasksServiceSpy.delete.and.returnValue(of(true));
-    actions$ = of(TaskActions.remove({ payload: { id: taskToDeleteId } }));
+    actions$ = of({ type: TaskActionsTypes.remove, payload: { id: taskToDeleteId } });
 
     service.removeEffect$.subscribe((result: { type: string, payload: { id: number } }) => {
       expect(result.type).toBe(TaskActionsTypes.removeSuccess);
