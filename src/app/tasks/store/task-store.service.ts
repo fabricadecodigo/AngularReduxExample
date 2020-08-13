@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { ITask } from './../model/itask';
 import * as TaskActions from './task.actions';
-import * as State from './task.state';
+import * as Selectors from './task.selectors';
 
 @Injectable({
   providedIn: 'root'
@@ -27,14 +27,14 @@ export class TaskStoreService {
   }
 
   getTasks() {
-    return this.store.select(State.selectedRecords);
+    return this.store.select(Selectors.selectedRecords);
   }
 
   getIsLoading() {
-    return this.store.select(State.selectIsLoading);
+    return this.store.select(Selectors.selectIsLoading);
   }
 
   getError() {
-    return this.store.select(State.selectError);
+    return this.store.select(Selectors.selectError);
   }
 }

@@ -1,7 +1,8 @@
-import { createReducer, on, State, Action } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 import { ITask } from './../model/itask';
+import { ITaskState } from './../model/itask-state';
 import * as TaskActions from './task.actions';
-import { taskInitialState, ITaskState } from './task.state';
+import { taskInitialState } from './task.state';
 
 // Informações importantes
 // O estado com ngrx é imutavel, ou seja, toda vez que eu preciso mudar uma informação eu preciso criar no novo estado
