@@ -16,58 +16,62 @@ export class TaskEffects {
   ) { }
 
   loadTasks$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(TaskActions.getAll),
-      mergeMap(() => {
-        return this.tasksService.getAll()
-          .pipe(
-            map(tasks => {
-              return TaskActions.getAllSucces({ payload: { tasks } });
-            })
-          );
-      })
-    );
+    return this.actions$
+      .pipe(
+        ofType(TaskActions.getAll),
+        mergeMap(() => {
+          return this.tasksService.getAll()
+            .pipe(
+              map(tasks => {
+                return TaskActions.getAllSucces({ payload: { tasks } });
+              })
+            );
+        })
+      );
   });
 
   createEffect$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(TaskActions.create),
-      mergeMap((action) => {
-        return this.tasksService.create(action.payload.task)
-          .pipe(
-            map(task => {
-              return TaskActions.createSucces({ payload: { task } });
-            }),
-            catchError(() => { // exemplo com erro
-              return of(TaskActions.createError({ payload: { error: 'Ocorreu algum erro ao tentar criar uma tarefa' } }));
-            })
-          );
-      }));
+    return this.actions$
+      .pipe(
+        ofType(TaskActions.create),
+        mergeMap((action) => {
+          return this.tasksService.create(action.payload.task)
+            .pipe(
+              map(task => {
+                return TaskActions.createSucces({ payload: { task } });
+              }),
+              catchError(() => { // exemplo com erro
+                return of(TaskActions.createError({ payload: { error: 'Ocorreu algum erro ao tentar criar uma tarefa' } }));
+              })
+            );
+        }));
   });
 
   updateEffect$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(TaskActions.update),
-      mergeMap((action) => {
-        return this.tasksService.update(action.payload.task)
-          .pipe(
-            map(() => {
-              return TaskActions.updateSuccess({ payload: { task: action.payload.task } });
-            })
-          );
-      }));
+    return this.actions$
+      .pipe(
+        ofType(TaskActions.update),
+        mergeMap((action) => {
+          return this.tasksService.update(action.payload.task)
+            .pipe(
+              map(() => {
+                return TaskActions.updateSuccess({ payload: { task: action.payload.task } });
+              })
+            );
+        }));
   });
 
   removeEffect$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(TaskActions.remove),
-      mergeMap((action) => {
-        return this.tasksService.delete(action.payload.id)
-          .pipe(
-            map(() => {
-              return TaskActions.removeSucces({ payload: { id: action.payload.id } });
-            })
-          );
-      }));
+    return this.actions$
+      .pipe(
+        ofType(TaskActions.remove),
+        mergeMap((action) => {
+          return this.tasksService.delete(action.payload.id)
+            .pipe(
+              map(() => {
+                return TaskActions.removeSucces({ payload: { id: action.payload.id } });
+              })
+            );
+        }));
   });
 }
