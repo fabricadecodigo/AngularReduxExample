@@ -8,3 +8,18 @@
   padding: 1rem 2rem;
   color: var(--color-white);
 }
+
+.loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8)
+}
+.loading > div {
+  color: var(--color-white);
+  position: relative;
+  top: 50%;
+  text-align: center;
+}
