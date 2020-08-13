@@ -13,6 +13,8 @@ describe('TaskStoreService', () => {
   let mockErrorSelector: MemoizedSelector<ITaskState, string>;
   let mockTasksSelector: MemoizedSelector<ITaskState, ITask[]>;
 
+  // os métodos getAllAction, createAction, editAction, removeAction não são possiveis testar.
+  // para garantir o funcionamento, vamos testar os Effects que são executados por esses métodos
 
   beforeEach(() => {
     TestBed.configureTestingModule({
